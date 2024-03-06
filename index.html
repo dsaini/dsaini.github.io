@@ -3,13 +3,23 @@
 
 <body>
     <link rel="stylesheet" href="style.css">
-    <script src="html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
-        const btn = document.getElementById("button");
-        btn.addEventListener("click", function(){
-        var element = document.getElementById('body');
-        html2pdf().from(element).save('dsaini_resume.pdf');
-    });
+        // Function to handle download
+        function downloadFunction() {
+            hideButtons();
+            const element = document.getElementById('body');
+            const formattedDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+            const options = {
+                margin: 10,
+                filename: 'dsaini_' + formattedDate + '_resume.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { scale: 4 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf(element, options);
+            showButtons();
+        }
     </script>
     <div class="container">
         <div class="header">
@@ -22,8 +32,8 @@
                 <span class="email-val">sdivyank@gmail.com</span>
                 <span class="separator"></span>
                 <span class="phone">Phone: </span>
-                <span class="phone-val">205-***-4024</span>
-                <button id="button">PDF Version</button>
+                <span class="phone-val">205-***-4024 | </span>
+                <button onclick="downloadFunction()">Download as PDF</button>
             </div>
 
             <div class="about">
