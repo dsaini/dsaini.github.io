@@ -3,6 +3,14 @@
 
 <body>
     <link rel="stylesheet" href="style.css">
+    <script src="html2pdf.bundle.min.js"></script>
+    <script>
+        const btn = document.getElementById("button");
+        btn.addEventListener("click", function(){
+        var element = document.getElementById('body');
+        html2pdf().from(element).save('dsaini_resume.pdf');
+    });
+    </script>
     <div class="container">
         <div class="header">
             <div class="full-name">
@@ -15,6 +23,7 @@
                 <span class="separator"></span>
                 <span class="phone">Phone: </span>
                 <span class="phone-val">205-***-4024</span>
+                <button id="button">PDF Version</button>
             </div>
 
             <div class="about">
